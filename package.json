@@ -14,16 +14,5 @@
     "prettier": "^1.14.2",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
-  },
-  "dependencies": {},
-  "ava": {
-    "babel": false,
-    "compileEnhancements": false,
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
   }
 }

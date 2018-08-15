@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "sourceMap": true,
-    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "target": "es6",
     "module": "commonjs",
-    "target": "es2015",
+    "lib": [
+      "es6",
+    ],
     "baseUrl": "src",
     "paths": {
       "~/*": ["*"],
     },
+    "sourceMap": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
   },
   "include": [
     "./src/**/*",

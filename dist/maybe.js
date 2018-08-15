@@ -5,11 +5,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Maybe {
     constructor() {
-        // @ts-ignore: Uninitialized
+        // @ts-ignore: Allow null initialization
         this.value = null;
         this.get = () => this.value;
-        this.isPresent = () => this.value === undefined;
-        this.isAbsent = () => this.value !== undefined;
+        this.isPresent = () => this.value !== null;
+        this.isAbsent = () => this.value === null;
         this.map = (func) => this.isPresent() ? Maybe.just(func(this.value)) : Maybe.nothing();
         this.flatMap = (func) => this.isPresent() ? func(this.value) : Maybe.nothing();
         this.filter = (pred) => this.isAbsent() || pred(this.value) ? this : Maybe.nothing();

@@ -4,8 +4,9 @@
 
 export class Maybe<T> {
   private static EMPTY: Maybe<any> = new Maybe();
-  // @ts-ignore: Uninitialized
-  private value: T = null;
+  // @ts-ignore: Allow null initialization
+  private value = null as T;
+  private foo = 'sss';
 
   static nothing<T>(): Maybe<T> {
     return Maybe.EMPTY;
@@ -23,8 +24,8 @@ export class Maybe<T> {
 
   get: () => T = () => this.value;
 
-  isPresent: () => boolean = () => this.value === undefined;
-  isAbsent: () => boolean = () => this.value !== undefined;
+  isPresent: () => boolean = () => this.value !== null;
+  isAbsent: () => boolean = () => this.value === null;
 
   map: <U>(func: (a: T) => U) => Maybe<U> = <U>(func: (a: T) => U) =>
     this.isPresent() ? Maybe.just(func(this.value)) : Maybe.nothing();
