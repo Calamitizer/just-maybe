@@ -1,0 +1,12 @@
+{
+  "name": "maybe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alex Ruble",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "prettier": "^1.14.2",
+    "typescript": "^3.0.1"
+  }
+}
