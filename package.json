@@ -4,9 +4,26 @@
   "main": "index.js",
   "author": "Alex Ruble",
   "license": "MIT",
+  "scripts": {
+    "compile": "tsc",
+    "test": "ava || exit 0",
+    "ct": "yarn compile && yarn test"
+  },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "1.0.0-beta.5.1",
     "prettier": "^1.14.2",
+    "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
+  },
+  "dependencies": {},
+  "ava": {
+    "babel": false,
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }

@@ -2,9 +2,10 @@
  * @author Alex Ruble
  */
 
-class Maybe<T> {
+export class Maybe<T> {
   private static EMPTY: Maybe<any> = new Maybe();
-  private value: T;
+  // @ts-ignore: Uninitialized
+  private value: T = null;
 
   static nothing<T>(): Maybe<T> {
     return Maybe.EMPTY;
@@ -50,3 +51,5 @@ class Maybe<T> {
     this.value = value;
   }
 }
+
+export default Maybe;
