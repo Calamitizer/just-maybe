@@ -2,11 +2,13 @@
  * @author Alex Ruble
  */
 
+console.log('foo');
+console.log('bar');
+
 export class Maybe<T> {
   private static EMPTY: Maybe<any> = new Maybe();
   // @ts-ignore: Allow null initialization
   private value = null as T;
-  private foo = 'sss';
 
   static nothing<T>(): Maybe<T> {
     return Maybe.EMPTY;

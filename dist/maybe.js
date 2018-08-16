@@ -3,6 +3,8 @@
  * @author Alex Ruble
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+console.log('foo');
+console.log('bar');
 class Maybe {
     constructor() {
         // @ts-ignore: Allow null initialization
