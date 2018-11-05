@@ -1,10 +1,5 @@
 "use strict";
-/**
- * @author Alex Ruble
- */
 Object.defineProperty(exports, "__esModule", { value: true });
-console.log('foo');
-console.log('bar');
 class Maybe {
     constructor() {
         // @ts-ignore: Allow null initialization
@@ -22,15 +17,14 @@ class Maybe {
         };
         this.equals = (other) => Maybe.equals(this, other);
         this.orElse = (other) => (this.isPresent() ? this.value : other);
-    }
-    static nothing() {
-        return Maybe.EMPTY;
+        this.orElseGet = (supp) => (this.isPresent ? this.value : supp());
     }
     setValue(value) {
         this.value = value;
     }
 }
 Maybe.EMPTY = new Maybe();
+Maybe.nothing = () => Maybe.EMPTY;
 Maybe.just = (value) => {
     const maybe = new Maybe();
     maybe.setValue(value);

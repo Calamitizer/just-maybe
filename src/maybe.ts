@@ -1,56 +1,53 @@
-/**
- * @author Alex Ruble
- */
-
-console.log('foo');
-console.log('bar');
+export type Mapper<T, U> = (a: T) => U;
+export type Predicate<T> = (a: T) => boolean;
+export type Procedure<T> = (a: T) => void;
+export type Supplier<T> = () => T;
 
 export class Maybe<T> {
   private static EMPTY: Maybe<any> = new Maybe();
   // @ts-ignore: Allow null initialization
   private value = null as T;
 
-  static nothing<T>(): Maybe<T> {
-    return Maybe.EMPTY;
-  }
+  static nothing = <U>() => Maybe.EMPTY as Maybe<U>;
 
-  static just: <U>(value: U) => Maybe<U> = <U>(value: U) => {
+  static just = <U>(value: U) => {
     const maybe = new Maybe<U>();
     maybe.setValue(value);
 
     return maybe;
   };
 
-  static equals: <T>(a: Maybe<T>, b: Maybe<T>) => boolean = <T>(a: Maybe<T>, b: Maybe<T>) =>
+  static equals = <U>(a: Maybe<U>, b: Maybe<U>) =>
     (a.isAbsent() && b.isAbsent()) || a.value === b.value;
 
-  get: () => T = () => this.value;
+  get = () => this.value;
 
-  isPresent: () => boolean = () => this.value !== null;
-  isAbsent: () => boolean = () => this.value === null;
+  isPresent = () => this.value !== null;
+  isAbsent = () => this.value === null;
 
-  map: <U>(func: (a: T) => U) => Maybe<U> = <U>(func: (a: T) => U) =>
-    this.isPresent() ? Maybe.just(func(this.value)) : Maybe.nothing();
+  map = <U>(func: Mapper<T, U>) =>
+    this.isPresent() ? Maybe.just(func(this.value)) : Maybe.nothing<U>();
 
-  flatMap: <U>(func: (a: T) => Maybe<U>) => Maybe<U> = <U>(func: (a: T) => U) =>
-    this.isPresent() ? func(this.value) : Maybe.nothing();
+  flatMap = <U>(func: Mapper<T, Maybe<U>>) =>
+    this.isPresent() ? func(this.value) : Maybe.nothing<U>();
 
-  filter: (pred: (a: T) => boolean) => Maybe<T> = (pred: (a: T) => boolean) =>
+  filter = (pred: Predicate<T>): Maybe<T> =>
     this.isAbsent() || pred(this.value) ? this : Maybe.nothing();
 
-  ifPresent: (proc: (a: T) => void) => void = (proc: (a: T) => void) => {
+  ifPresent = (proc: Procedure<T>) => {
     if (this.isPresent()) {
       proc(this.value);
     }
   };
 
-  equals: (other: Maybe<T>) => boolean = (other: Maybe<T>) => Maybe.equals(this, other);
+  equals = (other: Maybe<T>) => Maybe.equals<T>(this, other);
 
-  orElse: (other: T) => T = (other: T) => (this.isPresent() ? this.value : other);
+  orElse = (other: T) => (this.isPresent() ? this.value : other);
+  orElseGet = (supp: Supplier<T>) => (this.isPresent ? this.value : supp());
 
   private constructor() {}
 
-  private setValue(value: T): void {
+  private setValue(value: T) {
     this.value = value;
   }
 }

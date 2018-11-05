@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "noFallthroughCasesInSwitch": true,
+    "declaration": true,
     "target": "es6",
     "module": "commonjs",
     "lib": [
