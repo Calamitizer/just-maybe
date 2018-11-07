@@ -1,7 +1,7 @@
 {
   "name": "@calamitizer/just-maybe",
   "description": "A rigorous but lightweight implementation of the Maybe monad.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "J. Alex Ruble <jalexruble@gmail.com> (https://github.com/calamitizer)",
   "homepage": "https://github.com/calamitizer/just-maybe#readme",
   "repository": "github:calamitizer/just-maybe",
