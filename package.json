@@ -1,17 +1,21 @@
 {
-  "name": "maybe",
+  "name": "@calamitizer/just-maybe",
+  "description": "A rigorous but lightweight implementation of the Maybe monad.",
   "version": "1.0.0",
+  "author": "J. Alex Ruble <jalexruble@gmail.com> (https://github.com/calamitizer)",
+  "homepage": "https://github.com/calamitizer/just-maybe#readme",
+  "repository": "github:calamitizer/just-maybe",
   "main": "dist/maybe.js",
   "types": "dist/maybe.d.ts",
-  "author": "Alex Ruble",
   "license": "MIT",
   "scripts": {
     "lint": "tslint -c tslint.config.js -p tsconfig.json",
     "tslint-check": "tslint-config-prettier-check tslint.config.js",
-    "format": "prettier --config ./prettier.config.js --write \"**/*.ts\"",
-    "compile": "tsc",
+    "format": "prettier --config ./prettier.config.js --write \"{src,tests}/**/*.ts\"",
+    "copy-types": "cp src/maybe.d.ts dist/maybe.d.ts",
+    "compile": "tsc && yarn copy-types",
     "test": "ava || exit 0",
-    "build": "yarn format && yarn compile && yarn test"
+    "build": "yarn lint && yarn format && yarn compile && yarn test"
   },
   "devDependencies": {
     "ava": "1.0.0-beta.5.1",
@@ -20,5 +24,15 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.0.1"
+  },
+  "keywords": [
+    "maybe",
+    "optional",
+    "type",
+    "typescript",
+    "monad"
+  ],
+  "bugs": {
+    "url": "https://github.com/calamitizer/just-maybe/issues"
   }
 }

@@ -1,6 +1,6 @@
-export type Mapper<T, U> = (a: T) => U;
+export type Map<T, U> = (a: T) => U;
 export type Predicate<T> = (a: T) => boolean;
-export type Procedure<T> = (a: T) => void;
+export type Consumer<T> = (a: T) => void;
 export type Supplier<T> = () => T;
 
 export class Maybe<T> {
@@ -25,16 +25,16 @@ export class Maybe<T> {
   isPresent = () => this.value !== null;
   isAbsent = () => this.value === null;
 
-  map = <U>(func: Mapper<T, U>) =>
+  map = <U>(func: Map<T, U>) =>
     this.isPresent() ? Maybe.just(func(this.value)) : Maybe.nothing<U>();
 
-  flatMap = <U>(func: Mapper<T, Maybe<U>>) =>
+  flatMap = <U>(func: Map<T, Maybe<U>>) =>
     this.isPresent() ? func(this.value) : Maybe.nothing<U>();
 
   filter = (pred: Predicate<T>): Maybe<T> =>
     this.isAbsent() || pred(this.value) ? this : Maybe.nothing();
 
-  ifPresent = (proc: Procedure<T>) => {
+  ifPresent = (proc: Consumer<T>) => {
     if (this.isPresent()) {
       proc(this.value);
     }

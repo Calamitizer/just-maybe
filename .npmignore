@@ -1,2 +1,6 @@
-src
+src/
+tests/
+dist/*.js.map
+tsconfig.json
 *.config.js
+yarn-error.log
